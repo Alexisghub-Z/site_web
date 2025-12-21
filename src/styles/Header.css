@@ -199,27 +199,96 @@
   }
 }
 
+/* Menu hamburguesa */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  z-index: 1001;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 25px;
+  height: 2px;
+  background: var(--white);
+  transition: all 0.3s ease;
+}
+
+.menu-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translateY(10px);
+}
+
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translateY(-10px);
+}
+
 @media (max-width: 640px) {
   .logo {
     font-size: 1.25rem;
   }
 
+  .menu-toggle {
+    display: flex;
+  }
+
+  .nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 70%;
+    max-width: 300px;
+    height: 100vh;
+    background: rgba(10, 10, 10, 0.98);
+    backdrop-filter: blur(20px);
+    flex-direction: column;
+    padding: 80px 20px 20px;
+    gap: 0;
+    border-left: 1px solid rgba(139, 92, 246, 0.2);
+    transition: right 0.3s ease;
+    z-index: 1000;
+  }
+
+  .nav.nav-open {
+    right: 0;
+  }
+
   .nav-button {
-    padding: 0 0.5rem;
-    font-size: 0.8rem;
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .nav-button:hover {
+    background: rgba(139, 92, 246, 0.1);
   }
 
   .nav-button > svg {
-    width: 100px;
-    height: 100px;
-  }
-
-  .nav-button svg text {
-    font-size: 24px;
-    letter-spacing: 3px;
+    display: none;
   }
 
   .nav-button > .nav-icon {
+    display: inline-block;
+    transform: scale(1);
+    margin-left: auto;
     font-size: 1.2rem;
+  }
+
+  .nav-button > span:first-of-type {
+    transform: scale(1);
+  }
+
+  .header-right {
+    gap: 0.5rem;
   }
 }

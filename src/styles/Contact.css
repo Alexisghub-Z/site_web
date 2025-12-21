@@ -136,12 +136,73 @@
     padding: 60px 0;
   }
 
+  .contact::before {
+    width: 200px;
+    height: 200px;
+  }
+
   .contact-info {
     flex-direction: column;
+    gap: 16px;
+  }
+
+  .info-card {
+    padding: 24px;
+  }
+
+  .info-icon {
+    font-size: 2rem;
+    margin-bottom: 12px;
+  }
+
+  .info-card h3 {
+    font-size: 1.1rem;
+  }
+
+  .info-card p {
+    font-size: 0.95rem;
   }
 
   .contact-form {
-    padding: 24px;
+    padding: 24px 20px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-group label {
+    font-size: 0.95rem;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    padding: 12px 14px;
+    font-size: 0.95rem;
+  }
+
+  .form-group textarea {
+    min-height: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact {
+    padding: 50px 0;
+  }
+
+  .contact-form {
+    padding: 20px 16px;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    padding: 10px 12px;
+    font-size: 0.9rem;
+  }
+
+  .info-card {
+    padding: 20px;
   }
 }
 

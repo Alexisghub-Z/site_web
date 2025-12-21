@@ -1,10 +1,18 @@
+import { useState } from 'react'
 import '../styles/Header.css'
 import ThemeToggle from './ThemeToggle'
 
 function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+
   const scrollToSection = (id) => {
     const element = document.getElementById(id)
     element?.scrollIntoView({ behavior: 'smooth' })
+    setIsMenuOpen(false) // Cerrar menú al navegar
+  }
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen)
   }
 
   return (
@@ -16,7 +24,16 @@ function Header() {
             <span className="logo-accent">Pro</span>
           </div>
           <div className="header-right">
-            <nav className="nav">
+            <button
+              className={`menu-toggle ${isMenuOpen ? 'active' : ''}`}
+              onClick={toggleMenu}
+              aria-label="Toggle menu"
+            >
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+            <nav className={`nav ${isMenuOpen ? 'nav-open' : ''}`}>
               <button onClick={() => scrollToSection('inicio')} className="nav-button" title="Inicio">
                 <span>Inicio</span>
                 <span className="nav-icon" aria-hidden="true">🏠</span>

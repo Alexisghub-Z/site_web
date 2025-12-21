@@ -145,12 +145,38 @@
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .board {
-    max-width: 90vw;
-    font-size: clamp(2rem, 6vw, 3rem);
+    width: 100%;
+    max-width: calc(100vw - 40px);
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    padding-block: 0.75rem;
   }
 
   .board-container {
     margin: 1.5rem auto;
+    max-width: 95%;
+  }
+
+  .text {
+    padding-inline: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .board {
+    font-size: clamp(1.25rem, 4.5vw, 2rem);
+    --size: 3px;
+  }
+
+  .board-container {
+    max-width: 98%;
+  }
+
+  .text {
+    padding-inline: 1.5rem;
+  }
+
+  .rivet {
+    width: 8px;
   }
 }
 
