@@ -1,0 +1,241 @@
+.hero {
+  padding: 100px 0;
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.liquid-gradient-placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #0a0e27 0%, #1a1e3f 100%);
+  z-index: 1;
+}
+
+.hero .container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+}
+
+.hero-content {
+  max-width: 600px;
+}
+
+.hero-title {
+  font-size: 4rem;
+  font-weight: 900;
+  line-height: 1.1;
+  color: var(--white);
+  margin-bottom: 24px;
+  text-shadow: 0 0 40px rgba(139, 92, 246, 0.3),
+               0 4px 20px rgba(0, 0, 0, 0.5);
+  letter-spacing: -0.02em;
+}
+
+.hero-title-accent {
+  background: linear-gradient(135deg, #ff0080, #ff8c00, #40e0d0, #4169e1, #9370db, #ff0080);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 300% 300%;
+  animation: gradient-text 4s ease infinite;
+  display: block;
+  filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.4));
+}
+
+@keyframes gradient-text {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.hero-description {
+  font-size: 1.3rem;
+  color: var(--text-light);
+  margin-bottom: 40px;
+  line-height: 1.8;
+  font-weight: 400;
+  max-width: 90%;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.hero-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.code-window {
+  background: linear-gradient(145deg, #0f0f0f, #1a1a1a);
+  border-radius: 16px;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.9),
+              0 0 60px rgba(139, 92, 246, 0.3),
+              inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(139, 92, 246, 0.4);
+  overflow: hidden;
+  width: 100%;
+  max-width: 520px;
+  transform: perspective(1200px) rotateY(-8deg) rotateX(2deg);
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  position: relative;
+}
+
+.code-window::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(139, 92, 246, 0.1),
+    transparent
+  );
+  transition: left 0.7s ease;
+  pointer-events: none;
+}
+
+.code-window:hover {
+  transform: perspective(1200px) rotateY(0deg) rotateX(0deg) translateY(-8px);
+  box-shadow: 0 35px 100px rgba(0, 0, 0, 1),
+              0 0 80px rgba(139, 92, 246, 0.5),
+              inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  border-color: rgba(139, 92, 246, 0.6);
+}
+
+.code-window:hover::before {
+  left: 100%;
+}
+
+.code-header {
+  background: linear-gradient(180deg, #1f1f1f, #151515);
+  padding: 14px 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  position: relative;
+}
+
+.code-header::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(139, 92, 246, 0.3),
+    transparent
+  );
+}
+
+.code-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.dot {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  box-shadow: 0 0 8px currentColor,
+              inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.code-window:hover .dot {
+  box-shadow: 0 0 12px currentColor,
+              inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.dot-red {
+  background: linear-gradient(145deg, #ff5f57, #ef4444);
+  color: #ff5f57;
+}
+
+.dot-yellow {
+  background: linear-gradient(145deg, #ffbd2e, #f59e0b);
+  color: #ffbd2e;
+}
+
+.dot-green {
+  background: linear-gradient(145deg, #28ca42, #10b981);
+  color: #28ca42;
+}
+
+.code-content {
+  padding: 28px 24px;
+  overflow-x: auto;
+  background: linear-gradient(180deg, #0a0a0a, #121212);
+}
+
+.code-content pre {
+  margin: 0;
+  font-family: 'Fira Code', 'Consolas', 'Monaco', monospace;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  font-weight: 500;
+}
+
+.code-content code {
+  color: #e2e8f0;
+  text-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
+}
+
+@media (max-width: 968px) {
+  .hero .container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .hero-title {
+    font-size: 2.8rem;
+  }
+
+  .hero-description {
+    font-size: 1.125rem;
+  }
+
+  .code-window {
+    transform: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding: 60px 0;
+  }
+
+  .hero-title {
+    font-size: 2.2rem;
+  }
+
+  .hero-cta {
+    flex-direction: column;
+  }
+
+  .hero-cta .btn {
+    width: 100%;
+  }
+}
