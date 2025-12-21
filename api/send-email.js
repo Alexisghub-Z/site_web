@@ -25,7 +25,7 @@ export default async function handler(req, res) {
     // Enviar email con Resend
     const data = await resend.emails.send({
       from: 'Contacto Landing <onboarding@resend.dev>', // Cambiar por tu dominio verificado
-      to: ['tu-email@ejemplo.com'], // Tu email donde recibirás los mensajes
+      to: ['alexiszarate260@gmail.com'], // Tu email donde recibirás los mensajes
       replyTo: email, // Email del cliente para responder fácilmente
       subject: `Nuevo mensaje de contacto: ${name}`,
       html: `
