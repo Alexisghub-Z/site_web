@@ -20,6 +20,8 @@ function Header() {
       <div className="container">
         <div className="header-content">
           <div className="logo">
+            {/* Aquí puedes agregar tu logo como imagen */}
+            {/* <img src="/ruta-a-tu-logo.png" alt="Logo" className="logo-image" /> */}
             <span className="logo-text">Dev</span>
             <span className="logo-accent">Pro</span>
           </div>

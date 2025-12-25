@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import Header from './components/Header'
 import Hero from './components/Hero'
-import ServicesSlider from './components/ServicesSlider'
+import Services from './components/Services'
 import About from './components/About'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
@@ -21,7 +21,7 @@ function App() {
       <Header />
       <main>
         <Hero />
-        <ServicesSlider />
+        <Services />
         <About />
         <Contact />
       </main>

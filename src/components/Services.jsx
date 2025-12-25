@@ -3,72 +3,62 @@ import '../styles/Services.css'
 function Services() {
   const services = [
     {
-      icon: '🌐',
+      id: 1,
+      number: '01',
       title: 'Landing Pages',
-      description: 'Páginas web optimizadas para conversión, diseñadas para captar clientes y generar resultados medibles.',
-      features: ['Diseño responsive', 'SEO optimizado', 'Alta velocidad']
+      description: 'Páginas web optimizadas para conversión y resultados medibles.'
     },
     {
-      icon: '💻',
+      id: 2,
+      number: '02',
       title: 'Desarrollo Web',
-      description: 'Aplicaciones web modernas y escalables con las últimas tecnologías. React, Node.js y más.',
-      features: ['Arquitectura moderna', 'Código limpio', 'Escalable']
+      description: 'Aplicaciones web modernas con React, Node.js y tecnologías escalables.'
     },
     {
-      icon: '⚙️',
+      id: 3,
+      number: '03',
       title: 'Software a Medida',
-      description: 'Soluciones personalizadas para automatizar procesos y resolver necesidades específicas de tu negocio.',
-      features: ['Personalizado', 'Integración', 'Soporte continuo']
+      description: 'Soluciones personalizadas para automatizar procesos de tu negocio.'
     },
     {
-      icon: '📱',
-      title: 'Aplicaciones Web',
-      description: 'Aplicaciones web interactivas y dinámicas que funcionan en cualquier dispositivo.',
-      features: ['Progressive Web Apps', 'Multiplataforma', 'Offline-ready']
+      id: 4,
+      number: '04',
+      title: 'Apps Web',
+      description: 'Progressive Web Apps que funcionan en cualquier dispositivo.'
+    },
+    {
+      id: 5,
+      number: '05',
+      title: 'Consultoría Tech',
+      description: 'Asesoría para optimizar tu stack tecnológico y procesos.'
+    },
+    {
+      id: 6,
+      number: '06',
+      title: 'Mantenimiento',
+      description: 'Soporte continuo y actualizaciones para tu proyecto.'
     }
   ]
 
   return (
-    <section id="servicios" className="services">
+    <section id="servicios" className="services-section">
       <div className="container">
-        <div className="section-header">
+        <div className="section-header scroll-reveal">
           <h2 className="section-title">Servicios</h2>
           <p className="section-description">
-            Soluciones completas de desarrollo web adaptadas a tus necesidades
+            Desarrollo web profesional y soluciones digitales
           </p>
         </div>
-        <div className="services-grid">
-          {services.map((service, index) => (
-            <div key={index} className="service-card">
-              <div className="service-icon">{service.icon}</div>
-              <h3 className="service-title">{service.title}</h3>
-              <p className="service-description">{service.description}</p>
-              <ul className="service-features">
-                {service.features.map((feature, idx) => (
-                  <li key={idx}>{feature}</li>
-                ))}
-              </ul>
 
-              <div className="card-shine"></div>
-
-              <div className="card-background">
-                <div className="card-tiles">
-                  <div className="card-tile card-tile-1"></div>
-                  <div className="card-tile card-tile-2"></div>
-                  <div className="card-tile card-tile-3"></div>
-                  <div className="card-tile card-tile-4"></div>
-                  <div className="card-tile card-tile-5"></div>
-                  <div className="card-tile card-tile-6"></div>
-                  <div className="card-tile card-tile-7"></div>
-                  <div className="card-tile card-tile-8"></div>
-                  <div className="card-tile card-tile-9"></div>
-                  <div className="card-tile card-tile-10"></div>
-                </div>
-
-                <div className="card-line card-line-1"></div>
-                <div className="card-line card-line-2"></div>
-                <div className="card-line card-line-3"></div>
+        <div className="services-list scroll-reveal">
+          {services.map((service) => (
+            <div key={service.id} className="service-item">
+              <div className="service-number">{service.number}</div>
+              <div className="service-content">
+                <h3 className="service-title">{service.title}</h3>
+                <p className="service-description">{service.description}</p>
               </div>
+              <div className="service-arrow">→</div>
             </div>
           ))}
         </div>
