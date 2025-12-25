@@ -4,8 +4,9 @@
   border: 2px solid hsl(0 0% 16%);
   border-radius: 4px;
   margin: 2rem auto;
-  width: fit-content;
-  max-width: 90%;
+  width: 100%;
+  max-width: min(600px, 90vw);
+  display: block;
 }
 
 .board-container::after {
@@ -83,7 +84,8 @@
   letter-spacing: 0.035em;
   text-transform: uppercase;
   white-space: nowrap;
-  width: 600px;
+  width: 100%;
+  max-width: min(600px, calc(100vw - 40px));
   padding-block: 1rem;
   line-height: 1;
   overflow: hidden;
@@ -148,15 +150,13 @@
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .board {
-    width: 100%;
-    max-width: calc(100vw - 40px);
     font-size: clamp(1.5rem, 5vw, 2.5rem);
     padding-block: 0.75rem;
   }
 
   .board-container {
     margin: 1.5rem auto;
-    max-width: 95%;
+    max-width: 95vw;
   }
 
   .text {
@@ -168,10 +168,12 @@
   .board {
     font-size: clamp(1.25rem, 4.5vw, 2rem);
     --size: 3px;
+    padding-block: 0.5rem;
   }
 
   .board-container {
-    max-width: 98%;
+    max-width: 98vw;
+    margin: 1rem auto;
   }
 
   .text {

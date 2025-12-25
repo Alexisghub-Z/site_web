@@ -1,15 +1,29 @@
 import '../styles/About.css'
 
 function About() {
-  const skills = [
-    'React & Next.js',
-    'JavaScript & TypeScript',
-    'Node.js & Express',
-    'MongoDB & SQL',
-    'REST APIs',
-    'Responsive Design',
-    'Git & CI/CD',
-    'AWS & Hosting'
+  const technologiesTop = [
+    { name: 'React', icon: 'https://cdn.simpleicons.org/react/61DAFB' },
+    { name: 'Next.js', icon: 'https://cdn.simpleicons.org/nextdotjs/000000' },
+    { name: 'JavaScript', icon: 'https://cdn.simpleicons.org/javascript/F7DF1E' },
+    { name: 'TypeScript', icon: 'https://cdn.simpleicons.org/typescript/3178C6' },
+    { name: 'Python', icon: 'https://cdn.simpleicons.org/python/3776AB' },
+    { name: 'Java', icon: 'https://cdn.simpleicons.org/openjdk/000000' },
+    { name: 'Tailwind CSS', icon: 'https://cdn.simpleicons.org/tailwindcss/06B6D4' },
+    { name: 'Git', icon: 'https://cdn.simpleicons.org/git/F05032' },
+    { name: 'Vercel', icon: 'https://cdn.simpleicons.org/vercel/000000' }
+  ]
+
+  const technologiesBottom = [
+    { name: 'Node.js', icon: 'https://cdn.simpleicons.org/nodedotjs/339933' },
+    { name: 'Django', icon: 'https://cdn.simpleicons.org/django/092E20' },
+    { name: 'Laravel', icon: 'https://cdn.simpleicons.org/laravel/FF2D20' },
+    { name: 'Express', icon: 'https://cdn.simpleicons.org/express/000000' },
+    { name: 'MongoDB', icon: 'https://cdn.simpleicons.org/mongodb/47A248' },
+    { name: 'PostgreSQL', icon: 'https://cdn.simpleicons.org/postgresql/4169E1' },
+    { name: 'MySQL', icon: 'https://cdn.simpleicons.org/mysql/4479A1' },
+    { name: 'Docker', icon: 'https://cdn.simpleicons.org/docker/2496ED' },
+    { name: 'AWS', icon: 'https://cdn.simpleicons.org/awslambda/FF9900' },
+    { name: 'Firebase', icon: 'https://cdn.simpleicons.org/firebase/FFCA28' }
   ]
 
   const expertise = [
@@ -87,17 +101,33 @@ function About() {
             <p className="skills-subtitle">
               Uso las mejores tecnologías del mercado para garantizar rapidez, seguridad y escalabilidad
             </p>
-            <div className="skills-grid">
-              {skills.map((skill, index) => (
-                <div key={index} className="skill-tag">
-                  {skill}
-                </div>
-              ))}
+
+            {/* Carrusel superior */}
+            <div className="tech-carousel-container">
+              <div className="tech-carousel">
+                {[...technologiesTop, ...technologiesTop].map((tech, index) => (
+                  <div key={index} className="tech-carousel-item">
+                    <div className="tech-carousel-icon">
+                      <img src={tech.icon} alt={tech.name} />
+                    </div>
+                    <span className="tech-carousel-name">{tech.name}</span>
+                  </div>
+                ))}
+              </div>
             </div>
-            <div className="skills-note">
-              <p>✨ Código limpio y documentado</p>
-              <p>🚀 Optimizado para velocidad</p>
-              <p>🔒 Seguridad implementada desde el inicio</p>
+
+            {/* Carrusel inferior */}
+            <div className="tech-carousel-container">
+              <div className="tech-carousel tech-carousel-reverse">
+                {[...technologiesBottom, ...technologiesBottom].map((tech, index) => (
+                  <div key={index} className="tech-carousel-item">
+                    <div className="tech-carousel-icon">
+                      <img src={tech.icon} alt={tech.name} />
+                    </div>
+                    <span className="tech-carousel-name">{tech.name}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>

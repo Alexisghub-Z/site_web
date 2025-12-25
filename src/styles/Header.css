@@ -18,11 +18,14 @@
 }
 
 .logo {
+  font-family: 'Orbitron', var(--font-display);
   font-size: 1.5rem;
   font-weight: 700;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 .logo-image {
@@ -33,10 +36,13 @@
 
 .logo-text {
   color: var(--white);
+  transition: color 0.6s ease;
 }
 
 .logo-accent {
   color: var(--primary);
+  font-weight: 600;
+  transition: color 0.6s ease;
 }
 
 .header-right {
@@ -137,6 +143,15 @@
   transform: rotate(-45deg) translateY(-10px);
 }
 
+/* Theme toggle visibility control */
+.nav-theme-toggle {
+  display: none;
+}
+
+.desktop-theme-toggle {
+  display: block;
+}
+
 @media (max-width: 640px) {
   .logo {
     font-size: 1.25rem;
@@ -163,6 +178,10 @@
     z-index: 1000;
   }
 
+  [data-theme="light"] .nav {
+    background: rgba(255, 255, 255, 0.98);
+  }
+
   .nav.nav-open {
     right: 0;
   }
@@ -176,6 +195,10 @@
     font-weight: 400;
   }
 
+  [data-theme="light"] .nav-button {
+    border-bottom-color: rgba(0, 0, 0, 0.1);
+  }
+
   .nav-button:hover {
     background: rgba(139, 92, 246, 0.1);
     color: var(--primary);
@@ -183,5 +206,19 @@
 
   .header-right {
     gap: 0.5rem;
+  }
+
+  /* Show theme toggle in mobile nav */
+  .nav-theme-toggle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 1rem 1rem;
+    margin-top: auto;
+  }
+
+  /* Hide desktop theme toggle on mobile */
+  .desktop-theme-toggle {
+    display: none;
   }
 }

@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { ThemeProvider } from './context/ThemeContext'
 import Header from './components/Header'
 import Hero from './components/Hero'
 import Services from './components/Services'
@@ -13,20 +14,29 @@ function App() {
 
   useEffect(() => {
     // Scroll al top cuando la app se monte
-    window.scrollTo(0, 0)
+    window.scrollTo({ top: 0, behavior: 'instant' })
+
+    // Forzar scroll en móvil
+    const timer = setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'instant' })
+    }, 100)
+
+    return () => clearTimeout(timer)
   }, [])
 
   return (
-    <div className="app">
-      <Header />
-      <main>
-        <Hero />
-        <Services />
-        <About />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
+    <ThemeProvider>
+      <div className="app">
+        <Header />
+        <main>
+          <Hero />
+          <Services />
+          <About />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
+    </ThemeProvider>
   )
 }
 

@@ -20,10 +20,8 @@ function Header() {
       <div className="container">
         <div className="header-content">
           <div className="logo">
-            {/* Aquí puedes agregar tu logo como imagen */}
-            {/* <img src="/ruta-a-tu-logo.png" alt="Logo" className="logo-image" /> */}
-            <span className="logo-text">Dev</span>
-            <span className="logo-accent">Pro</span>
+            <span className="logo-text">STRIX</span>
+            <span className="logo-accent">CODA</span>
           </div>
           <div className="header-right">
             <button
@@ -51,8 +49,14 @@ function Header() {
               <button onClick={() => scrollToSection('contacto')} className="nav-button" title="Contacto">
                 <span>Contacto</span>
               </button>
+
+              <div className="nav-theme-toggle">
+                <ThemeToggle />
+              </div>
             </nav>
-            <ThemeToggle />
+            <div className="desktop-theme-toggle">
+              <ThemeToggle />
+            </div>
           </div>
         </div>
       </div>

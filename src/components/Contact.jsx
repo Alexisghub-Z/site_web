@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import '../styles/Contact.css'
 import LEDBoard from './LEDBoard'
 
@@ -8,15 +8,21 @@ function Contact() {
     email: '',
     message: ''
   })
-  const [status, setStatus] = useState({
-    loading: false,
-    success: false,
-    error: null
-  })
+  const [buttonState, setButtonState] = useState('initial') // initial, progress, success, error
+  const [message, setMessage] = useState({ text: '', type: '' })
+  const buttonRef = useRef(null)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setStatus({ loading: true, success: false, error: null })
+    setButtonState('progress')
+    setMessage({ text: '', type: '' })
+
+    // Agregar clase de progreso después de un pequeño delay
+    setTimeout(() => {
+      if (buttonRef.current) {
+        buttonRef.current.classList.add('btn-fill')
+      }
+    }, 500)
 
     try {
       const response = await fetch('/api/send-email', {
@@ -33,20 +39,43 @@ function Contact() {
         throw new Error(data.error || 'Error al enviar el mensaje')
       }
 
-      setStatus({ loading: false, success: true, error: null })
-      setFormData({ name: '', email: '', message: '' })
-
-      // Limpiar mensaje de éxito después de 5 segundos
+      // Esperar a que termine la animación de llenado (3.2s)
       setTimeout(() => {
-        setStatus({ loading: false, success: false, error: null })
-      }, 5000)
+        if (buttonRef.current) {
+          buttonRef.current.classList.remove('btn-fill')
+        }
+        setButtonState('success')
+        setMessage({
+          text: '¡Mensaje enviado correctamente! Te contactaré pronto.',
+          type: 'success'
+        })
+        setFormData({ name: '', email: '', message: '' })
+
+        // Resetear después de 5 segundos
+        setTimeout(() => {
+          setButtonState('initial')
+          setMessage({ text: '', type: '' })
+        }, 5000)
+      }, 3700)
 
     } catch (error) {
-      setStatus({
-        loading: false,
-        success: false,
-        error: error.message || 'Error al enviar el mensaje. Intenta nuevamente.'
-      })
+      // Esperar a que termine la animación de llenado
+      setTimeout(() => {
+        if (buttonRef.current) {
+          buttonRef.current.classList.remove('btn-fill')
+        }
+        setButtonState('error')
+        setMessage({
+          text: 'No se pudo enviar el mensaje. Lo resolveremos pronto, intenta nuevamente más tarde.',
+          type: 'error'
+        })
+
+        // Resetear después de 5 segundos
+        setTimeout(() => {
+          setButtonState('initial')
+          setMessage({ text: '', type: '' })
+        }, 5000)
+      }, 3700)
     }
   }
 
@@ -72,12 +101,12 @@ function Contact() {
             <div className="info-card">
               <div className="info-icon">✉️</div>
               <h3>Email</h3>
-              <p>tu-email@ejemplo.com</p>
+              <p><a href="mailto:alexiszarate274@gmail.com">alexiszarate274@gmail.com</a></p>
             </div>
             <div className="info-card">
-              <div className="info-icon">💬</div>
-              <h3>Respuesta</h3>
-              <p>Dentro de 24 horas</p>
+              <div className="info-icon">📞</div>
+              <h3>WhatsApp</h3>
+              <p><a href="https://wa.me/5219515886761" target="_blank" rel="noopener noreferrer">951 588 6761</a></p>
             </div>
             <div className="info-card">
               <div className="info-icon">🌍</div>
@@ -122,25 +151,21 @@ function Contact() {
                 placeholder="Cuéntame sobre tu proyecto..."
               ></textarea>
             </div>
-            {status.success && (
-              <div className="form-message form-message-success">
-                ✓ ¡Mensaje enviado correctamente! Te contactaré pronto.
-              </div>
-            )}
-
-            {status.error && (
-              <div className="form-message form-message-error">
-                ✗ {status.error}
-              </div>
-            )}
-
             <button
+              ref={buttonRef}
               type="submit"
-              className="btn btn-primary btn-full"
-              disabled={status.loading}
+              className={`submit-btn ${buttonState === 'progress' ? 'btn-progress' : ''} ${buttonState === 'success' ? 'btn-complete btn-success' : ''} ${buttonState === 'error' ? 'btn-complete btn-error' : ''}`}
+              disabled={buttonState !== 'initial'}
             >
-              {status.loading ? 'Enviando...' : 'Enviar Mensaje'}
+              {buttonState === 'initial' && 'Enviar Mensaje'}
             </button>
+
+            {message.text && (
+              <div className={`submit-message ${message.type === 'success' ? 'submit-message-success' : 'submit-message-error'}`}>
+                {message.type === 'success' ? '✓ ' : '✗ '}
+                {message.text}
+              </div>
+            )}
           </form>
         </div>
       </div>

@@ -45,6 +45,17 @@ ul {
   font-size: 15px;
 }
 
+.cta-text a {
+  color: #757575;
+  font-size: 15px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.cta-text a:hover {
+  color: var(--primary);
+}
+
 .footer-content {
   position: relative;
   z-index: 2;
@@ -121,16 +132,8 @@ ul {
   transition: all 0.3s ease;
 }
 
-.facebook-bg {
-  background: #3B5998;
-}
-
-.twitter-bg {
-  background: #000000;
-}
-
-.linkedin-bg {
-  background: #0077B5;
+.whatsapp-bg {
+  background: #25D366;
 }
 
 .footer-widget-heading h3 {

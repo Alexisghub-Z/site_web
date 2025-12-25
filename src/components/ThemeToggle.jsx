@@ -1,22 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useTheme } from '../context/ThemeContext'
 import '../styles/ThemeToggle.css'
 
 function ThemeToggle() {
-  const [isDark, setIsDark] = useState(true)
-
-  useEffect(() => {
-    // Check for saved theme preference or default to dark
-    const savedTheme = localStorage.getItem('theme') || 'dark'
-    setIsDark(savedTheme === 'dark')
-    document.documentElement.setAttribute('data-theme', savedTheme)
-  }, [])
-
-  const toggleTheme = () => {
-    const newTheme = isDark ? 'light' : 'dark'
-    setIsDark(!isDark)
-    document.documentElement.setAttribute('data-theme', newTheme)
-    localStorage.setItem('theme', newTheme)
-  }
+  const { theme, toggleTheme } = useTheme()
+  const isDark = theme === 'dark'
 
   return (
     <label className="theme-switch">

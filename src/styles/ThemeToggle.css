@@ -45,15 +45,28 @@
 .theme-switch #theme-input:checked + .slider .sun-moon {
   transform: translateX(calc(var(--scale) * 26px));
   background-color: white;
-  animation: rotate-center 0.6s ease-in-out both;
+  animation: rotate-to-night 0.6s ease-in-out both;
 }
 
-@keyframes rotate-center {
+.theme-switch #theme-input:not(:checked) + .slider .sun-moon {
+  animation: rotate-to-day 0.6s ease-in-out both;
+}
+
+@keyframes rotate-to-night {
   0% {
     transform: translateX(0) rotate(0);
   }
   100% {
     transform: translateX(calc(var(--scale) * 26px)) rotate(360deg);
+  }
+}
+
+@keyframes rotate-to-day {
+  0% {
+    transform: translateX(calc(var(--scale) * 26px)) rotate(360deg);
+  }
+  100% {
+    transform: translateX(0) rotate(720deg);
   }
 }
 

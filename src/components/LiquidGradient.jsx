@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { useTheme } from '../context/ThemeContext'
 import '../styles/LiquidGradient.css'
 
 // TouchTexture class
@@ -97,6 +98,7 @@ class TouchTexture {
 }
 
 function LiquidGradient() {
+  const { theme } = useTheme()
   const containerRef = useRef(null)
   const rendererRef = useRef(null)
   const sceneRef = useRef(null)
@@ -105,6 +107,7 @@ function LiquidGradient() {
   const touchTextureRef = useRef(null)
   const meshRef = useRef(null)
   const animationFrameRef = useRef(null)
+  const uniformsRef = useRef(null)
 
   useEffect(() => {
     if (!window.THREE) {
@@ -138,7 +141,7 @@ function LiquidGradient() {
 
     // Setup scene
     const scene = new window.THREE.Scene()
-    scene.background = new window.THREE.Color(0x0a0e27)
+    scene.background = new window.THREE.Color(0x050812) // Fondo más oscuro
     sceneRef.current = scene
 
     // Setup clock
@@ -157,27 +160,29 @@ function LiquidGradient() {
 
     const viewSize = getViewSize()
 
-    // Setup uniforms
+    // Setup uniforms with initial dark theme colors
     const uniforms = {
       uTime: { value: 0 },
       uResolution: { value: new window.THREE.Vector2(width, height) },
-      uColor1: { value: new window.THREE.Vector3(0.945, 0.353, 0.133) },
-      uColor2: { value: new window.THREE.Vector3(0.039, 0.055, 0.153) },
-      uColor3: { value: new window.THREE.Vector3(0.945, 0.353, 0.133) },
-      uColor4: { value: new window.THREE.Vector3(0.039, 0.055, 0.153) },
-      uColor5: { value: new window.THREE.Vector3(0.945, 0.353, 0.133) },
-      uColor6: { value: new window.THREE.Vector3(0.039, 0.055, 0.153) },
+      uColor1: { value: new window.THREE.Vector3(0.345, 0.220, 0.545) }, // Púrpura oscuro
+      uColor2: { value: new window.THREE.Vector3(0.020, 0.027, 0.090) }, // Azul muy oscuro
+      uColor3: { value: new window.THREE.Vector3(0.180, 0.290, 0.420) }, // Azul medio oscuro
+      uColor4: { value: new window.THREE.Vector3(0.090, 0.050, 0.180) }, // Púrpura muy oscuro
+      uColor5: { value: new window.THREE.Vector3(0.120, 0.180, 0.280) }, // Azul grisáceo oscuro
+      uColor6: { value: new window.THREE.Vector3(0.250, 0.150, 0.350) }, // Púrpura medio
       uSpeed: { value: 1.5 },
-      uIntensity: { value: 1.8 },
+      uIntensity: { value: 1.5 },
       uTouchTexture: { value: touchTexture.texture },
       uGrainIntensity: { value: 0.08 },
       uZoom: { value: 1.0 },
-      uDarkNavy: { value: new window.THREE.Vector3(0.039, 0.055, 0.153) },
+      uDarkNavy: { value: new window.THREE.Vector3(0.015, 0.020, 0.065) }, // Fondo más oscuro
       uGradientSize: { value: 0.45 },
       uGradientCount: { value: 12.0 },
-      uColor1Weight: { value: 0.5 },
-      uColor2Weight: { value: 1.8 }
+      uColor1Weight: { value: 0.6 },
+      uColor2Weight: { value: 1.4 }
     }
+
+    uniformsRef.current = uniforms
 
     // Create geometry
     const geometry = new window.THREE.PlaneGeometry(viewSize.width, viewSize.height, 1, 1)
@@ -418,6 +423,91 @@ function LiquidGradient() {
       }
     }
   }, [])
+
+  // Effect to update colors when theme changes with smooth transition
+  useEffect(() => {
+    if (!uniformsRef.current || !sceneRef.current) return
+
+    const uniforms = uniformsRef.current
+    const scene = sceneRef.current
+
+    // Define target colors based on theme
+    const targetColors = theme === 'light' ? {
+      bg: new window.THREE.Color(0xf5f5ff),
+      color1: new window.THREE.Vector3(0.95, 0.85, 1.0),
+      color2: new window.THREE.Vector3(0.85, 0.90, 1.0),
+      color3: new window.THREE.Vector3(1.0, 0.90, 0.95),
+      color4: new window.THREE.Vector3(0.90, 0.85, 1.0),
+      color5: new window.THREE.Vector3(0.85, 0.95, 1.0),
+      color6: new window.THREE.Vector3(0.95, 0.90, 1.0),
+      darkNavy: new window.THREE.Vector3(0.92, 0.92, 0.98),
+      intensity: 1.2,
+      weight1: 0.4,
+      weight2: 1.2
+    } : {
+      bg: new window.THREE.Color(0x050812),
+      color1: new window.THREE.Vector3(0.345, 0.220, 0.545),
+      color2: new window.THREE.Vector3(0.020, 0.027, 0.090),
+      color3: new window.THREE.Vector3(0.180, 0.290, 0.420),
+      color4: new window.THREE.Vector3(0.090, 0.050, 0.180),
+      color5: new window.THREE.Vector3(0.120, 0.180, 0.280),
+      color6: new window.THREE.Vector3(0.250, 0.150, 0.350),
+      darkNavy: new window.THREE.Vector3(0.015, 0.020, 0.065),
+      intensity: 1.5,
+      weight1: 0.6,
+      weight2: 1.4
+    }
+
+    // Animate transition - synced with CSS transition duration
+    const duration = 600 // 0.6 seconds to match theme transition
+    const startTime = Date.now()
+
+    // Store initial values
+    const initialBg = scene.background.clone()
+    const initialColors = {
+      color1: uniforms.uColor1.value.clone(),
+      color2: uniforms.uColor2.value.clone(),
+      color3: uniforms.uColor3.value.clone(),
+      color4: uniforms.uColor4.value.clone(),
+      color5: uniforms.uColor5.value.clone(),
+      color6: uniforms.uColor6.value.clone(),
+      darkNavy: uniforms.uDarkNavy.value.clone(),
+      intensity: uniforms.uIntensity.value,
+      weight1: uniforms.uColor1Weight.value,
+      weight2: uniforms.uColor2Weight.value
+    }
+
+    const animate = () => {
+      const elapsed = Date.now() - startTime
+      const progress = Math.min(elapsed / duration, 1)
+
+      // Easing function for smooth transition (ease-in-out)
+      const eased = progress < 0.5
+        ? 2 * progress * progress
+        : 1 - Math.pow(-2 * progress + 2, 2) / 2
+
+      // Lerp (linear interpolation) for all colors
+      scene.background.lerpColors(initialBg, targetColors.bg, eased)
+      uniforms.uColor1.value.lerpVectors(initialColors.color1, targetColors.color1, eased)
+      uniforms.uColor2.value.lerpVectors(initialColors.color2, targetColors.color2, eased)
+      uniforms.uColor3.value.lerpVectors(initialColors.color3, targetColors.color3, eased)
+      uniforms.uColor4.value.lerpVectors(initialColors.color4, targetColors.color4, eased)
+      uniforms.uColor5.value.lerpVectors(initialColors.color5, targetColors.color5, eased)
+      uniforms.uColor6.value.lerpVectors(initialColors.color6, targetColors.color6, eased)
+      uniforms.uDarkNavy.value.lerpVectors(initialColors.darkNavy, targetColors.darkNavy, eased)
+
+      // Lerp numeric values
+      uniforms.uIntensity.value = initialColors.intensity + (targetColors.intensity - initialColors.intensity) * eased
+      uniforms.uColor1Weight.value = initialColors.weight1 + (targetColors.weight1 - initialColors.weight1) * eased
+      uniforms.uColor2Weight.value = initialColors.weight2 + (targetColors.weight2 - initialColors.weight2) * eased
+
+      if (progress < 1) {
+        requestAnimationFrame(animate)
+      }
+    }
+
+    animate()
+  }, [theme])
 
   return <div ref={containerRef} className="liquid-gradient-container" />
 }

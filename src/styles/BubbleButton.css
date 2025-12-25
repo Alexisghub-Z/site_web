@@ -1,0 +1,142 @@
+/* Bubble Button Styles */
+.button--bubble__container {
+  position: relative;
+  display: inline-block;
+}
+
+.button--bubble {
+  -webkit-font-smoothing: antialiased;
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  user-select: none;
+  letter-spacing: 1px;
+  padding: 20px 40px;
+  text-transform: uppercase;
+  transition: all 0.1s ease-out;
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.button--bubble:hover {
+  background: none;
+  border-color: var(--white);
+}
+
+.button--bubble:hover + .button--bubble__effect-container .circle {
+  background: #8b5cf6;
+}
+
+.button--bubble:hover + .button--bubble__effect-container .effect-button {
+  background: #8b5cf6;
+}
+
+.button--bubble:active + .button--bubble__effect-container {
+  transform: scale(0.95);
+}
+
+.button--bubble__container .effect-button {
+  position: absolute;
+  width: 50%;
+  height: 25%;
+  top: 50%;
+  left: 25%;
+  z-index: 1;
+  transform: translateY(-50%);
+  transition: background 0.1s ease-out;
+  border-radius: 4px;
+}
+
+.button--bubble__effect-container {
+  position: absolute;
+  display: block;
+  width: 200%;
+  height: 400%;
+  top: -150%;
+  left: -50%;
+  -webkit-filter: url("#goo");
+  filter: url("#goo");
+  transition: all 0.1s ease-out;
+  pointer-events: none;
+}
+
+.button--bubble__effect-container .circle {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  border-radius: 15px;
+  transition: background 0.1s ease-out;
+}
+
+.button--bubble__effect-container .circle.top-left {
+  top: 40%;
+  left: 27%;
+}
+
+.button--bubble__effect-container .circle.bottom-right {
+  bottom: 40%;
+  right: 27%;
+}
+
+.goo-filter {
+  position: absolute;
+  visibility: hidden;
+  width: 1px;
+  height: 1px;
+}
+
+/* Primary variant */
+.button--bubble.primary {
+  background-color: var(--white);
+  border: 1px solid var(--white);
+  color: #000000;
+}
+
+.effect-button.primary {
+  background: rgba(139, 92, 246, 0.4);
+}
+
+.circle.primary {
+  background: rgba(139, 92, 246, 0.4);
+}
+
+.button--bubble.primary:hover {
+  border-color: var(--white);
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+.button--bubble.primary:hover + .button--bubble__effect-container .circle.primary,
+.button--bubble.primary:hover + .button--bubble__effect-container .effect-button.primary {
+  background: #8b5cf6;
+}
+
+/* Secondary variant */
+.button--bubble.secondary {
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: var(--white);
+}
+
+.effect-button.secondary {
+  background: rgba(139, 92, 246, 0.5);
+}
+
+.circle.secondary {
+  background: rgba(139, 92, 246, 0.5);
+}
+
+.button--bubble.secondary:hover {
+  border-color: #a78bfa;
+}
+
+.button--bubble.secondary:hover + .button--bubble__effect-container .circle.secondary,
+.button--bubble.secondary:hover + .button--bubble__effect-container .effect-button.secondary {
+  background: #a78bfa;
+}
