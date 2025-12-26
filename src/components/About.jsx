@@ -22,7 +22,7 @@ function About() {
     { name: 'PostgreSQL', icon: 'https://cdn.simpleicons.org/postgresql/4169E1' },
     { name: 'MySQL', icon: 'https://cdn.simpleicons.org/mysql/4479A1' },
     { name: 'Docker', icon: 'https://cdn.simpleicons.org/docker/2496ED' },
-    { name: 'AWS', icon: 'https://cdn.simpleicons.org/awslambda/FF9900' },
+    { name: 'AWS', icon: 'https://cdn.simpleicons.org/amazonwebservices/FF9900' },
     { name: 'Firebase', icon: 'https://cdn.simpleicons.org/firebase/FFCA28' }
   ]
 
