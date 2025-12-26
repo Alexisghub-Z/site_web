@@ -37,8 +37,8 @@ function Footer() {
             <div className="footer-widget">
               <div className="footer-logo">
                 <div className="logo">
-                  <span className="logo-text">Dev</span>
-                  <span className="logo-accent">Pro</span>
+                  <span className="logo-text">STRIX</span>
+                  <span className="logo-accent">CODA</span>
                 </div>
               </div>
               <div className="footer-text">
@@ -87,7 +87,7 @@ function Footer() {
         <div className="container">
           <div className="copyright-row">
             <div className="copyright-text">
-              <p>Copyright &copy; {currentYear}, Todos los derechos reservados <a href="#">DevPro</a></p>
+              <p>Copyright &copy; {currentYear}, Todos los derechos reservados <a href="#">STRIX CODA</a></p>
             </div>
             <div className="footer-menu">
               <ul>
