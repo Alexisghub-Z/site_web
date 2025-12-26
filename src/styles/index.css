@@ -106,11 +106,48 @@
   box-sizing: border-box;
 }
 
-/* Smooth transitions for theme changes */
-* {
-  transition-property: background-color, color, border-color, box-shadow, fill, stroke;
-  transition-duration: 0.6s;
-  transition-timing-function: ease;
+/* Smooth transitions for theme changes - Only for specific elements */
+body,
+.hero-title,
+.hero-description,
+.section-title,
+.section-description,
+.btn,
+.header,
+.nav-button,
+.service-item,
+.info-card,
+.contact-form,
+.footer,
+.code-window,
+.logo-text,
+.logo-accent,
+.about-skills,
+.service-panel {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Faster transitions on mobile */
+@media (max-width: 768px) {
+  body,
+  .hero-title,
+  .hero-description,
+  .section-title,
+  .section-description,
+  .btn,
+  .header,
+  .nav-button,
+  .service-item,
+  .info-card,
+  .contact-form,
+  .footer,
+  .code-window,
+  .logo-text,
+  .logo-accent,
+  .about-skills,
+  .service-panel {
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
 }
 
 html,
